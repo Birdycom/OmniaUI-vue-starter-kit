@@ -2,7 +2,7 @@
 import type { UrlMethodPair } from '@inertiajs/core';
 import { router } from '@inertiajs/vue3';
 import { usePasskeyVerify } from '@laravel/passkeys/vue';
-import { KeyRound } from '@lucide/vue';
+import Icon from '@/components/Icon.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -37,7 +37,7 @@ const { verify, isLoading, error, isSupported } = usePasskeyVerify({
 
 <template>
     <div v-if="isSupported">
-        <div class="grid gap-0.5">
+        <div class="gap-0.5 grid">
             <Button
                 type="button"
                 variant="outline"
@@ -46,7 +46,7 @@ const { verify, isLoading, error, isSupported } = usePasskeyVerify({
                 :disabled="isLoading"
             >
                 <Spinner v-if="isLoading" />
-                <KeyRound v-else class="h-1 w-1" />
+                <Icon v-else icon="mdi:key-outline" class="h-1 w-1" />
                 {{
                     isLoading
                         ? (props.loadingLabel ?? 'Authenticating...')
@@ -59,11 +59,11 @@ const { verify, isLoading, error, isSupported } = usePasskeyVerify({
             </div>
         </div>
 
-        <div class="relative m-block-1.5">
-            <div class="absolute inset-0 flex align-items-center">
+        <div class="m-block-1.5 relative">
+            <div class="inset-0 align-items-center absolute flex">
                 <Separator class="w-full" />
             </div>
-            <div class="relative flex justify-center font-0.7 uppercase">
+            <div class="font-0.7 relative flex justify-center uppercase">
                 <span class="p-inline-0.5 app-fg-muted">
                     {{ props.separator ?? 'Or continue with email' }}
                 </span>

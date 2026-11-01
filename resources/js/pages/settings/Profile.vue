@@ -36,7 +36,7 @@ const user = computed(() => page.props.auth.user);
 
     <h1 class="sr-only">Profile settings</h1>
 
-    <div class="flex flex-col space-y-6">
+    <div class="space-y-6 flex flex-col">
         <Heading
             variant="small"
             title="Profile"
@@ -48,7 +48,7 @@ const user = computed(() => page.props.auth.user);
             class="space-y-6"
             v-slot="{ errors, processing }"
         >
-            <div class="grid gap-0.5">
+            <div class="gap-0.5 grid">
                 <Label for="name">Name</Label>
                 <Input
                     id="name"
@@ -62,7 +62,7 @@ const user = computed(() => page.props.auth.user);
                 <InputError class="mt-0.5" :message="errors.name" />
             </div>
 
-            <div class="grid gap-0.5">
+            <div class="gap-0.5 grid">
                 <Label for="email">Email address</Label>
                 <Input
                     id="email"
@@ -79,12 +79,12 @@ const user = computed(() => page.props.auth.user);
 
             <!-- @chisel-email-verification -->
             <div v-if="page.props.mustVerifyEmail && !user.email_verified_at">
-                <p class=" font-0.8 app-fg-muted">
+                <p class="font-0.8 app-fg-muted">
                     Your email address is unverified.
                     <Link
                         :href="send()"
                         as="button"
-                        class="underline underline-offset-4 transition-colors duration-300 ease-out"
+                        class="ease-out underline underline-offset-4 transition-colors duration-300"
                     >
                         Click here to re-send the verification email.
                     </Link>
@@ -99,7 +99,7 @@ const user = computed(() => page.props.auth.user);
             </div>
             <!-- @end-chisel-email-verification -->
 
-            <div class="flex align-items-center gap-1">
+            <div class="align-items-center gap-1 flex">
                 <Button :disabled="processing" data-test="update-profile-button"
                     >Save</Button
                 >

@@ -34,8 +34,8 @@ const inputEmail = ref(props.email);
         :reset-on-success="['password', 'password_confirmation']"
         v-slot="{ errors, processing }"
     >
-        <div class="grid gap-1.5">
-            <div class="grid gap-0.5">
+        <div class="gap-1.5 grid">
+            <div class="gap-0.5 grid">
                 <Label for="email">Email</Label>
                 <Input
                     id="email"
@@ -49,7 +49,7 @@ const inputEmail = ref(props.email);
                 <InputError :message="errors.email" class="mt-0.5" />
             </div>
 
-            <div class="grid gap-0.5">
+            <div class="gap-0.5 grid">
                 <Label for="password">Password</Label>
                 <PasswordInput
                     id="password"
@@ -63,7 +63,7 @@ const inputEmail = ref(props.email);
                 <InputError :message="errors.password" />
             </div>
 
-            <div class="grid gap-0.5">
+            <div class="gap-0.5 grid">
                 <Label for="password_confirmation"> Confirm password </Label>
                 <PasswordInput
                     id="password_confirmation"

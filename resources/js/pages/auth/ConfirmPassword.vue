@@ -44,7 +44,7 @@ defineOptions({
         v-slot="{ errors, processing }"
     >
         <div class="space-y-6">
-            <div class="grid gap-0.5">
+            <div class="gap-0.5 grid">
                 <Label htmlFor="password">Password</Label>
                 <PasswordInput
                     id="password"
@@ -58,7 +58,7 @@ defineOptions({
                 <InputError :message="errors.password" />
             </div>
 
-            <div class="flex align-items-center">
+            <div class="align-items-center flex">
                 <Button
                     class="w-full"
                     :disabled="processing"

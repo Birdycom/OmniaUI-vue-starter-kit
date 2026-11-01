@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Form, Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import InputError from '@/components/InputError.vue';
 import PasswordInput from '@/components/PasswordInput.vue';
 import TextLink from '@/components/TextLink.vue';
@@ -24,10 +25,13 @@ defineOptions({
     },
 });
 
-defineProps<{
+const props = defineProps<{
     status?: string;
     canResetPassword: boolean;
+    demo?: { email: string; password: string } | null;
 }>();
+
+const password = ref(props.demo?.password ?? '');
 </script>
 
 <template>
@@ -35,7 +39,7 @@ defineProps<{
 
     <div
         v-if="status"
-        class="mb-1 text-center font-0.8 font-medium text-green-30"
+        class="mb-1 font-0.8 font-medium text-green-30 text-center"
     >
         {{ status }}
     </div>
@@ -48,10 +52,10 @@ defineProps<{
         v-bind="store.form()"
         :reset-on-success="['password']"
         v-slot="{ errors, processing }"
-        class="flex flex-col gap-1.5"
+        class="gap-1.5 flex flex-col"
     >
-        <div class="grid gap-1.5">
-            <div class="grid gap-0.5">
+        <div class="gap-1.5 grid">
+            <div class="gap-0.5 grid">
                 <Label for="email">Email address</Label>
                 <Input
                     id="email"
@@ -62,12 +66,13 @@ defineProps<{
                     :tabindex="1"
                     autocomplete="email"
                     placeholder="email@example.com"
+                    :default-value="demo?.email"
                 />
                 <InputError :message="errors.email" />
             </div>
 
-            <div class="grid gap-0.5">
-                <div class="flex align-items-center justify-between">
+            <div class="gap-0.5 grid">
+                <div class="align-items-center flex justify-between">
                     <Label for="password">Password</Label>
                     <TextLink
                         v-if="canResetPassword"
@@ -85,12 +90,13 @@ defineProps<{
                     :tabindex="2"
                     autocomplete="current-password"
                     placeholder="Password"
+                    v-model="password"
                 />
                 <InputError :message="errors.password" />
             </div>
 
-            <div class="flex align-items-center justify-between">
-                <Label for="remember" class="flex align-items-center space-x-3">
+            <div class="align-items-center flex justify-between">
+                <Label for="remember" class="align-items-center space-x-3 flex">
                     <Checkbox id="remember" name="remember" :tabindex="3" />
                     <span>Remember me</span>
                 </Label>
@@ -109,7 +115,7 @@ defineProps<{
         </div>
 
         <!-- @chisel-registration -->
-        <div class="text-center font-0.8 app-fg-muted">
+        <div class="font-0.8 app-fg-muted text-center">
             Don't have an account?
             <TextLink :href="register()" :tabindex="5">Sign up</TextLink>
         </div>

@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import { bunny } from 'laravel-vite-plugin/fonts';
 import { defineConfig, lazyPlugins } from 'vite-plus';
+import omniaIcons from './vite-icons.js';
 
 export default defineConfig({
     plugins: lazyPlugins(() => [
@@ -16,9 +17,14 @@ export default defineConfig({
                 }),
             ],
         }),
+        omniaIcons(),
         inertia(),
         vue({
             template: {
+                // <iconify-icon> (the webicons, see components/Icon.vue) is a web component, not a Vue component.
+                compilerOptions: {
+                    isCustomElement: (tag) => tag === 'iconify-icon',
+                },
                 transformAssetUrls: {
                     base: null,
                     includeAbsolute: false,

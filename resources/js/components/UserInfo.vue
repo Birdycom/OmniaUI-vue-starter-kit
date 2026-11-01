@@ -3,7 +3,10 @@ import { getInitials } from '@/composables/useInitials';
 import type { User } from '@/types';
 
 /** OmniaUI user (avatar + name, optionally the email). */
-const { user, showEmail = false } = defineProps<{ user: User; showEmail?: boolean }>();
+const { user, showEmail = false } = defineProps<{
+    user: User;
+    showEmail?: boolean;
+}>();
 </script>
 
 <template>

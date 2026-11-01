@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Form } from '@inertiajs/vue3';
-import { Eye, EyeOff, LockKeyhole, RefreshCw } from '@lucide/vue';
+import Icon from '@/components/Icon.vue';
 import { nextTick, onMounted, ref, useTemplateRef } from 'vue';
 import AlertError from '@/components/AlertError.vue';
 import { Button } from '@/components/ui/button';
@@ -41,8 +41,9 @@ onMounted(async () => {
 <template>
     <Card class="w-full">
         <CardHeader>
-            <CardTitle class="flex gap-0.7">
-                <LockKeyhole class="size-4" />2FA recovery codes
+            <CardTitle class="gap-0.7 flex">
+                <Icon icon="mdi:lock-outline" class="size-4" />2FA recovery
+                codes
             </CardTitle>
             <CardDescription>
                 Recovery codes let you regain access if you lose your 2FA
@@ -51,11 +52,15 @@ onMounted(async () => {
         </CardHeader>
         <CardContent>
             <div
-                class="flex flex-col gap-0.7 select-none sm:flex-row sm:align-items-center sm:justify-between"
+                class="gap-0.7 sm:flex-row sm:align-items-center sm:justify-between flex flex-col select-none"
             >
                 <Button @click="toggleRecoveryCodesVisibility" class="w-fit">
-                    <component
-                        :is="isRecoveryCodesVisible ? EyeOff : Eye"
+                    <Icon
+                        :icon="
+                            isRecoveryCodesVisible
+                                ? 'mdi:eye-off-outline'
+                                : 'mdi:eye-outline'
+                        "
                         class="size-4"
                     />
                     {{ isRecoveryCodesVisible ? 'Hide' : 'View' }} recovery
@@ -75,7 +80,8 @@ onMounted(async () => {
                         type="submit"
                         :disabled="processing"
                     >
-                        <RefreshCw /> Regenerate codes
+                        <Icon icon="mdi:refresh" class="h-1 w-1" /> Regenerate
+                        codes
                     </Button>
                 </Form>
             </div>
@@ -93,7 +99,7 @@ onMounted(async () => {
                 <div v-else class="mt-0.7 space-y-3">
                     <div
                         ref="recoveryCodeSectionRef"
-                        class="grid gap-0.2 rounded-lg app-surface-muted p-1 app-mono font-0.8"
+                        class="gap-0.2 rounded-lg app-surface-muted p-1 app-mono font-0.8 grid"
                     >
                         <div v-if="!recoveryCodesList.length" class="space-y-2">
                             <div

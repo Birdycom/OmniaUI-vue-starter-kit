@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3';
-import { KeyRound } from '@lucide/vue';
+import Icon from '@/components/Icon.vue';
 import type { Passkey } from '@/types/auth';
 import Heading from '@/components/Heading.vue';
 import PasskeyItem from '@/components/PasskeyItem.vue';
@@ -37,7 +37,7 @@ const handleRegisterSuccess = () => {
             description="Manage your passkeys for passwordless sign-in"
         />
 
-        <div class="overflow-hidden rounded-lg border">
+        <div class="rounded-lg overflow-hidden border">
             <template v-if="passkeys.length">
                 <PasskeyItem
                     v-for="passkey in passkeys"
@@ -49,9 +49,12 @@ const handleRegisterSuccess = () => {
 
             <div v-else class="p-2 text-center">
                 <div
-                    class="m-inline-auto mb-1 flex h-3.5 w-3.5 align-items-center justify-center round-8 app-surface-muted"
+                    class="m-inline-auto mb-1 h-3.5 w-3.5 align-items-center round-8 app-surface-muted flex justify-center"
                 >
-                    <KeyRound class="h-1.7 w-1.7 app-fg-muted" />
+                    <Icon
+                        icon="mdi:key-outline"
+                        class="h-1.7 w-1.7 app-fg-muted"
+                    />
                 </div>
                 <p class="font-medium">No passkeys yet</p>
                 <p class="mt-0.2 font-0.8 app-fg-muted">

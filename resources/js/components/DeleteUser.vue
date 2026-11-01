@@ -29,9 +29,11 @@ const passwordInput = useTemplateRef('passwordInput');
             description="Delete your account and all of its resources"
         />
         <div
-            class="space-y-4 rounded-lg border border-snow-60 bg-linen-20 p-1 dark:border-red-200/10 dark:bg-red-700/10"
+            class="space-y-4 rounded-lg border-snow-60 bg-linen-20 p-1 dark:border-red-200/10 dark:bg-red-700/10 border"
         >
-            <div class="relative flex flex-col gap-0.5 text-red-60 dark:text-red-100">
+            <div
+                class="gap-0.5 text-red-60 dark:text-red-100 relative flex flex-col"
+            >
                 <p class="font-medium">Warning</p>
                 <p class="font-0.8">
                     Please proceed with caution, this cannot be undone.
@@ -68,7 +70,7 @@ const passwordInput = useTemplateRef('passwordInput');
                             </DialogDescription>
                         </DialogHeader>
 
-                        <div class="grid gap-0.5">
+                        <div class="gap-0.5 grid">
                             <Label for="password" class="sr-only"
                                 >Password</Label
                             >
@@ -90,7 +92,7 @@ const passwordInput = useTemplateRef('passwordInput');
                                             clearErrors();
                                             reset();
                                         }
-"
+                                    "
                                 >
                                     Cancel
                                 </Button>

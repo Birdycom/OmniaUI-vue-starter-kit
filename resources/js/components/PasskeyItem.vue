@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { KeyRound, Trash2 } from '@lucide/vue';
+import Icon from '@/components/Icon.vue';
 import { ref } from 'vue';
 import { Button } from '@/components/ui/button';
 import {
@@ -32,19 +32,21 @@ const handleDelete = () => {
 </script>
 
 <template>
-    <div class="flex align-items-center justify-between border-b p-1">
-        <div class="flex align-items-center gap-1">
+    <div class="align-items-center p-1 flex justify-between border-b">
+        <div class="align-items-center gap-1 flex">
             <div
-                class="flex h-2.5 w-2.5 noshrink align-items-center justify-center round-6 app-surface-muted"
+                class="h-2.5 w-2.5 noshrink align-items-center round-6 app-surface-muted flex justify-center"
             >
-                <KeyRound class="h-1.2 w-1.2 app-fg-muted" />
+                <Icon icon="mdi:key-outline" class="h-1.2 w-1.2 app-fg-muted" />
             </div>
             <div class="space-y-1">
-                <div class="flex align-items-center gap-0.6">
-                    <p class="font-medium letterspacing-1">{{ passkey.name }}</p>
+                <div class="align-items-center gap-0.6 flex">
+                    <p class="font-medium letterspacing-1">
+                        {{ passkey.name }}
+                    </p>
                     <span
                         v-if="passkey.authenticator"
-                        class="inline-flex align-items-center gap-0.2 round-3 app-surface-muted p-inline-0.5 p-block-0.1 font-0.7 font-medium letterspacing-8 app-fg-muted uppercase"
+                        class="align-items-center gap-0.2 round-3 app-surface-muted p-inline-0.5 p-block-0.1 font-0.7 font-medium letterspacing-8 app-fg-muted inline-flex uppercase"
                     >
                         {{ passkey.authenticator }}
                     </span>
@@ -66,7 +68,7 @@ const handleDelete = () => {
                     size="sm"
                     class="app-fg-danger app-fg-danger"
                 >
-                    <Trash2 class="h-1 w-1" />
+                    <Icon icon="mdi:trash-can-outline" class="h-1 w-1" />
                     <span class="sr-only">Remove</span>
                 </Button>
             </DialogTrigger>

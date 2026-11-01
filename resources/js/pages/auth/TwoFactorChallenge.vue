@@ -61,9 +61,9 @@ const toggleRecoveryMode = (clearErrors: () => void): void => {
             >
                 <input type="hidden" name="code" :value="code" />
                 <div
-                    class="flex flex-col align-items-center justify-center space-y-3 text-center"
+                    class="align-items-center space-y-3 flex flex-col justify-center text-center"
                 >
-                    <div class="flex w-full align-items-center justify-center">
+                    <div class="align-items-center flex w-full justify-center">
                         <InputOTP
                             id="otp"
                             v-model="code"
@@ -85,11 +85,11 @@ const toggleRecoveryMode = (clearErrors: () => void): void => {
                 <Button type="submit" class="w-full" :disabled="processing"
                     >Continue</Button
                 >
-                <div class="text-center font-0.8 app-fg-muted">
+                <div class="font-0.8 app-fg-muted text-center">
                     <span>or you can </span>
                     <button
                         type="button"
-                        class="underline underline-offset-4 transition-colors duration-300 ease-out"
+                        class="ease-out underline underline-offset-4 transition-colors duration-300"
                         @click="() => toggleRecoveryMode(clearErrors)"
                     >
                         {{ authConfigContent.buttonText }}
@@ -117,11 +117,11 @@ const toggleRecoveryMode = (clearErrors: () => void): void => {
                     >Continue</Button
                 >
 
-                <div class="text-center font-0.8 app-fg-muted">
+                <div class="font-0.8 app-fg-muted text-center">
                     <span>or you can </span>
                     <button
                         type="button"
-                        class="underline underline-offset-4 transition-colors duration-300 ease-out"
+                        class="ease-out underline underline-offset-4 transition-colors duration-300"
                         @click="() => toggleRecoveryMode(clearErrors)"
                     >
                         {{ authConfigContent.buttonText }}

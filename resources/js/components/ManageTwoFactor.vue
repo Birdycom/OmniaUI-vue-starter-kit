@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Form } from '@inertiajs/vue3';
-import { ShieldCheck } from '@lucide/vue';
+import Icon from '@/components/Icon.vue';
 import { onUnmounted, ref } from 'vue';
 import Heading from '@/components/Heading.vue';
 import TwoFactorRecoveryCodes from '@/components/TwoFactorRecoveryCodes.vue';
@@ -37,7 +37,7 @@ onUnmounted(() => clearTwoFactorAuthData());
 
         <div
             v-if="!twoFactorEnabled"
-            class="flex flex-col align-items-flex-start justify-flex-start space-y-4"
+            class="align-items-flex-start justify-flex-start space-y-4 flex flex-col"
         >
             <p class="font-0.8 app-fg-muted">
                 When you enable two-factor authentication, you will be prompted
@@ -47,7 +47,10 @@ onUnmounted(() => clearTwoFactorAuthData());
 
             <div>
                 <Button v-if="hasSetupData" @click="showSetupModal = true">
-                    <ShieldCheck />Continue setup
+                    <Icon
+                        icon="mdi:shield-check-outline"
+                        class="h-1 w-1"
+                    />Continue setup
                 </Button>
                 <Form
                     v-else
@@ -62,7 +65,10 @@ onUnmounted(() => clearTwoFactorAuthData());
             </div>
         </div>
 
-        <div v-else class="flex flex-col align-items-flex-start justify-flex-start space-y-4">
+        <div
+            v-else
+            class="align-items-flex-start justify-flex-start space-y-4 flex flex-col"
+        >
             <p class="font-0.8 app-fg-muted">
                 You will be prompted for a secure, random pin during login,
                 which you can retrieve from the TOTP-supported application on

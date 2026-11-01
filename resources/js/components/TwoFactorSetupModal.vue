@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Form } from '@inertiajs/vue3';
 import { useClipboard } from '@vueuse/core';
-import { Check, Copy, ScanLine } from '@lucide/vue';
+import Icon from '@/components/Icon.vue';
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 import AlertError from '@/components/AlertError.vue';
 import InputError from '@/components/InputError.vue';
@@ -112,15 +112,15 @@ watch(
 <template>
     <Dialog :open="isOpen" @update:open="isOpen = $event">
         <DialogContent class="sm:max-w-md">
-            <DialogHeader class="flex flex-col align-items-center text-center gap-0.5">
-                <div
-                    class="mb-0.7 w-auto round-full border  p-0.1 shadow-sm"
-                >
+            <DialogHeader
+                class="align-items-center gap-0.5 flex flex-col text-center"
+            >
+                <div class="mb-0.7 round-full p-0.1 shadow-sm w-auto border">
                     <div
-                        class="relative overflow-hidden round-full border app-surface-muted p-0.6"
+                        class="round-full app-surface-muted p-0.6 relative overflow-hidden border"
                     >
                         <div
-                            class="absolute inset-0 grid grid-cols-5 opacity-50"
+                            class="inset-0 absolute grid grid-cols-5 opacity-50"
                         >
                             <div
                                 v-for="i in 5"
@@ -129,7 +129,7 @@ watch(
                             />
                         </div>
                         <div
-                            class="absolute inset-0 grid grid-rows-5 opacity-50"
+                            class="inset-0 absolute grid grid-rows-5 opacity-50"
                         >
                             <div
                                 v-for="i in 5"
@@ -137,8 +137,9 @@ watch(
                                 class="border-b"
                             />
                         </div>
-                        <ScanLine
-                            class="relative z-20 size-6"
+                        <Icon
+                            icon="mdi:qrcode-scan"
+                            class="size-6 relative z-20"
                         />
                     </div>
                 </div>
@@ -149,30 +150,30 @@ watch(
             </DialogHeader>
 
             <div
-                class="relative flex w-auto flex-col align-items-center justify-center space-y-5"
+                class="align-items-center space-y-5 relative flex w-auto flex-col justify-center"
             >
                 <template v-if="!showVerificationStep">
                     <AlertError v-if="errors?.length" :errors="errors" />
                     <template v-else>
                         <div
-                            class="relative m-inline-auto flex max-w-md align-items-center overflow-hidden"
+                            class="m-inline-auto max-w-md align-items-center relative flex overflow-hidden"
                         >
                             <div
-                                class="relative m-inline-auto aspect-1 w-16 overflow-hidden rounded-lg border"
+                                class="m-inline-auto aspect-1 w-16 rounded-lg relative overflow-hidden border"
                             >
                                 <div
                                     v-if="!qrCodeSvg"
-                                    class="absolute inset-0 z-10 flex aspect-1 h-auto w-full animate-pulse align-items-center justify-center"
+                                    class="inset-0 aspect-1 animate-pulse align-items-center absolute z-10 flex h-auto w-full justify-center"
                                 >
                                     <Spinner class="size-6" />
                                 </div>
                                 <div
                                     v-else
-                                    class="relative z-10 overflow-hidden border p-1.2"
+                                    class="p-1.2 relative z-10 overflow-hidden border"
                                 >
                                     <div
                                         v-html="qrCodeSvg"
-                                        class="flex aspect-1 size-full align-items-center justify-center"
+                                        class="aspect-1 align-items-center flex size-full justify-center"
                                         :style="{
                                             filter:
                                                 resolvedAppearance === 'dark'
@@ -184,32 +185,30 @@ watch(
                             </div>
                         </div>
 
-                        <div class="flex w-full align-items-center space-x-5">
+                        <div class="align-items-center space-x-5 flex w-full">
                             <Button class="w-full" @click="handleModalNextStep">
                                 {{ modalConfig.buttonText }}
                             </Button>
                         </div>
 
                         <div
-                            class="relative flex w-full align-items-center justify-center"
+                            class="align-items-center relative flex w-full justify-center"
                         >
-                            <div
-                                class="absolute inset-0 top-1/2 h-px w-full"
-                            />
-                            <span class="relative p-inline-0.5 p-block-0.2"
+                            <div class="inset-0 absolute top-1/2 h-px w-full" />
+                            <span class="p-inline-0.5 p-block-0.2 relative"
                                 >or, enter the code manually</span
                             >
                         </div>
 
                         <div
-                            class="flex w-full align-items-center justify-center space-x-2"
+                            class="align-items-center space-x-2 flex w-full justify-center"
                         >
                             <div
-                                class="flex w-full align-items-stretch overflow-hidden round-6 border"
+                                class="align-items-stretch round-6 flex w-full overflow-hidden border"
                             >
                                 <div
                                     v-if="!manualSetupKey"
-                                    class="flex h-full w-full align-items-center justify-center app-surface-muted p-0.7"
+                                    class="align-items-center app-surface-muted p-0.7 flex h-full w-full justify-center"
                                 >
                                     <Spinner />
                                 </div>
@@ -218,17 +217,22 @@ watch(
                                         type="text"
                                         readonly
                                         :value="manualSetupKey"
-                                        class="h-full w-full p-0.7"
+                                        class="p-0.7 h-full w-full"
                                     />
                                     <button
                                         @click="copy(manualSetupKey || '')"
-                                        class="relative block h-auto border-l p-inline-0.7 app-surface-muted"
+                                        class="p-inline-0.7 app-surface-muted relative block h-auto border-l"
                                     >
-                                        <Check
+                                        <Icon
                                             v-if="copied"
+                                            icon="mdi:check"
                                             class="w-1 text-green-10"
                                         />
-                                        <Copy v-else class="w-1" />
+                                        <Icon
+                                            v-else
+                                            icon="mdi:content-copy"
+                                            class="h-1 w-1"
+                                        />
                                     </button>
                                 </template>
                             </div>
@@ -248,10 +252,10 @@ watch(
                         <input type="hidden" name="code" :value="code" />
                         <div
                             ref="pinInputContainerRef"
-                            class="relative w-full space-y-3"
+                            class="space-y-3 relative w-full"
                         >
                             <div
-                                class="flex w-full flex-col align-items-center justify-center space-y-3 p-block-0.5"
+                                class="align-items-center space-y-3 p-block-0.5 flex w-full flex-col justify-center"
                             >
                                 <InputOTP
                                     id="otp"
@@ -271,7 +275,9 @@ watch(
                                 <InputError :message="errors?.code" />
                             </div>
 
-                            <div class="flex w-full align-items-center space-x-5">
+                            <div
+                                class="align-items-center space-x-5 flex w-full"
+                            >
                                 <Button
                                     type="button"
                                     variant="outline"

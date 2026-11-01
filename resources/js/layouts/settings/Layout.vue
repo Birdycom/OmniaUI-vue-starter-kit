@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
 import Heading from '@/components/Heading.vue';
+import Icon from '@/components/Icon.vue';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
@@ -35,10 +36,10 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
             description="Manage your profile and account settings"
         />
 
-        <div class="flex flex-col lg:flex-row lg:space-x-12">
-            <aside class="w-full max-w-xl lg:w-12">
+        <div class="lg:flex-row lg:space-x-12 flex flex-col">
+            <aside class="max-w-xl lg:w-12 w-full">
                 <nav
-                    class="flex flex-col space-y-1 space-x-0"
+                    class="space-y-1 space-x-0 flex flex-col"
                     aria-label="Settings"
                 >
                     <Button
@@ -46,13 +47,21 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
                         :key="toUrl(item.href)"
                         variant="ghost"
                         :class="[
-                            'w-full justify-flex-start',
-                            { 'app-surface-muted': isCurrentOrParentUrl(item.href) },
+                            'justify-flex-start w-full',
+                            {
+                                'app-surface-muted': isCurrentOrParentUrl(
+                                    item.href,
+                                ),
+                            },
                         ]"
                         as-child
                     >
                         <Link :href="item.href">
-                            <component :is="item.icon" class="h-1 w-1" />
+                            <Icon
+                                v-if="item.icon"
+                                :icon="item.icon"
+                                class="h-1 w-1"
+                            />
                             {{ item.title }}
                         </Link>
                     </Button>
@@ -61,7 +70,7 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
 
             <Separator class="m-block-1.5 lg:hidden" />
 
-            <div class="flex-1 md:max-w-2xl">
+            <div class="md:max-w-2xl flex-1">
                 <section class="max-w-xl space-y-12">
                     <slot />
                 </section>

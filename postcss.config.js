@@ -13,11 +13,18 @@ function usedComponents() {
     }
 
     const used = new Set();
-    for (const file of fs.readdirSync('resources/js', { recursive: true }).filter((f) => /\.(ts|vue)$/.test(f))) {
+    for (const file of fs
+        .readdirSync('resources/js', { recursive: true })
+        .filter((f) => /\.(ts|vue)$/.test(f))) {
         const source = fs.readFileSync(path.join('resources/js', file), 'utf8');
-        for (const [, names] of source.matchAll(/import\s*\{([^}]+)\}\s*from\s*'@birdycom\/omniaui-vue'/g)) {
-            for (const name of names.split(',').map((n) => n.trim().split(/\s+as\s+/)[0])) {
-                if (fs.existsSync(`${components}/${name}.vue`)) used.add(`${components}/${name}.vue`);
+        for (const [, names] of source.matchAll(
+            /import\s*\{([^}]+)\}\s*from\s*'@birdycom\/omniaui-vue'/g,
+        )) {
+            for (const name of names
+                .split(',')
+                .map((n) => n.trim().split(/\s+as\s+/)[0])) {
+                if (fs.existsSync(`${components}/${name}.vue`))
+                    used.add(`${components}/${name}.vue`);
             }
         }
     }
@@ -25,7 +32,9 @@ function usedComponents() {
     // Components use other components (OcStatus renders OcStatusDot): follow their imports too.
     const queue = [...used];
     while (queue.length) {
-        for (const [, name] of fs.readFileSync(queue.pop(), 'utf8').matchAll(/from '\.\/(Oc\w+)\.vue'/g)) {
+        for (const [, name] of fs
+            .readFileSync(queue.pop(), 'utf8')
+            .matchAll(/from '\.\/(Oc\w+)\.vue'/g)) {
             const file = `${components}/${name}.vue`;
             if (fs.existsSync(file) && !used.has(file)) {
                 used.add(file);
@@ -40,7 +49,11 @@ function usedComponents() {
 export default {
     plugins: [
         omniacss({
-            content: ['resources/views/**/*.blade.php', 'resources/js/**/*.{ts,vue}', ...usedComponents()],
+            content: [
+                'resources/views/**/*.blade.php',
+                'resources/js/**/*.{ts,vue}',
+                ...usedComponents(),
+            ],
         }),
     ],
 };

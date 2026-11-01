@@ -12,7 +12,11 @@ const input = () => wrapper.value?.querySelector('input') ?? null;
 onMounted(() => props.autofocus && input()?.focus());
 
 defineExpose({
-    $el: { get value() { return input(); } },
+    $el: {
+        get value() {
+            return input();
+        },
+    },
     focus: () => input()?.focus(),
 });
 </script>

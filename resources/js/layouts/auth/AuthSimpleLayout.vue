@@ -11,27 +11,27 @@ defineProps<{
 
 <template>
     <div
-        class="flex min-h-svh flex-col align-items-center justify-center gap-1.5 p-1.5 md:p-10"
+        class="align-items-center gap-1.5 p-1.5 md:p-10 flex min-h-svh flex-col justify-center"
     >
-        <div class="w-full max-w-sm">
-            <div class="flex flex-col gap-2">
-                <div class="flex flex-col align-items-center gap-1">
+        <div class="max-w-sm w-full">
+            <div class="gap-2 flex flex-col">
+                <div class="align-items-center gap-1 flex flex-col">
                     <Link
                         :href="home()"
-                        class="flex flex-col align-items-center gap-0.5 font-medium"
+                        class="align-items-center gap-0.5 font-medium flex flex-col"
                     >
                         <div
-                            class="mb-0.2 flex h-2.2 w-2.2 align-items-center justify-center round-3"
+                            class="mb-0.2 h-2.2 w-2.2 align-items-center round-3 flex justify-center"
                         >
                             <AppLogoIcon
-                                class="size-9 fill-current text-[var(--foreground)] dark:text-white"
+                                class="size-9 dark:text-white fill-current text-[var(--foreground)]"
                             />
                         </div>
                         <span class="sr-only">{{ title }}</span>
                     </Link>
                     <div class="space-y-2 text-center">
                         <h1 class="font-1.2 font-medium">{{ title }}</h1>
-                        <p class="text-center font-0.8 app-fg-muted">
+                        <p class="font-0.8 app-fg-muted text-center">
                             {{ description }}
                         </p>
                     </div>

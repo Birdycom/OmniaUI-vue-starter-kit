@@ -19,11 +19,21 @@ const { isCurrentUrl } = useCurrentUrl();
         <nav class="oc-block-appbar-nav" aria-label="Main navigation">
             <ul class="oc-navmenu">
                 <li>
-                    <Link class="oc-navmenu-link" :href="dashboard()" :aria-current="isCurrentUrl(dashboard()) ? 'page' : undefined" prefetch>Dashboard</Link>
+                    <Link
+                        class="oc-navmenu-link"
+                        :href="dashboard()"
+                        :aria-current="
+                            isCurrentUrl(dashboard()) ? 'page' : undefined
+                        "
+                        prefetch
+                        >Dashboard</Link
+                    >
                 </li>
             </ul>
         </nav>
-        <div class="oc-block-appbar-actions"><UserMenu id="user-menu-header" compact /></div>
+        <div class="oc-block-appbar-actions">
+            <UserMenu id="user-menu-header" compact />
+        </div>
     </header>
     <main class="app-page">
         <Breadcrumbs :breadcrumbs="breadcrumbs" />
