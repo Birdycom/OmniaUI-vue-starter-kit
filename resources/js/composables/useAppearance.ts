@@ -28,6 +28,13 @@ export function updateTheme(value: Appearance): void {
     } else {
         document.documentElement.classList.toggle('dark', value === 'dark');
     }
+
+    // OmniaUI follows data-theme on <html>; without it, a dark OS wins over a chosen light theme.
+    if (value === 'system') {
+        delete document.documentElement.dataset.theme;
+    } else {
+        document.documentElement.dataset.theme = value;
+    }
 }
 
 const setCookie = (name: string, value: string, days = 365) => {
