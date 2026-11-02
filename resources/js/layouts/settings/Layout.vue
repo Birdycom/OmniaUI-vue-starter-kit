@@ -45,6 +45,7 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
                     <Button
                         v-for="item in sidebarNavItems"
                         :key="toUrl(item.href)"
+                        size="sm"
                         variant="ghost"
                         :class="[
                             'justify-flex-start w-full',
