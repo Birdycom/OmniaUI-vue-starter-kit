@@ -22,22 +22,16 @@ const passwordInput = useTemplateRef('passwordInput');
 </script>
 
 <template>
-    <div class="space-y-6">
+    <section class="app-danger-zone">
         <Heading
             variant="small"
             title="Delete account"
             description="Delete your account and all of its resources"
         />
-        <div
-            class="space-y-4 rounded-lg border-snow-60 bg-linen-20 p-1 dark:border-red-200/10 dark:bg-red-700/10 border"
-        >
-            <div
-                class="gap-0.5 text-red-60 dark:text-red-100 relative flex flex-col"
-            >
-                <p class="font-medium">Warning</p>
-                <p class="font-0.8">
-                    Please proceed with caution, this cannot be undone.
-                </p>
+        <div class="app-danger-box">
+            <div class="app-danger-box-text">
+                <p class="app-danger-box-title">Warning</p>
+                <p>Please proceed with caution, this cannot be undone.</p>
             </div>
             <Dialog>
                 <DialogTrigger as-child>
@@ -111,5 +105,5 @@ const passwordInput = useTemplateRef('passwordInput');
                 </DialogContent>
             </Dialog>
         </div>
-    </div>
+    </section>
 </template>
