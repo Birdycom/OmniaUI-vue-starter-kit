@@ -17,7 +17,7 @@ const tabs = [
         <label
             v-for="{ value, icon, label } in tabs"
             :key="value"
-            class="oc-segmented-item inline-flex align-items-center gap-0.5"
+            class="oc-segmented-item align-items-center gap-0.5 inline-flex"
         >
             <input
                 type="radio"
