@@ -11,10 +11,10 @@
         "types:check": "vue-tsc --noEmit"
     },
     "dependencies": {
-        "@birdycom/omniacss": "^0.12.5",
-        "@birdycom/omniaui": "^0.12.5",
-        "@birdycom/omniaui-blocks": "^0.12.5",
-        "@birdycom/omniaui-vue": "^0.12.5",
+        "@birdycom/omniacss": "^0.14.2",
+        "@birdycom/omniaui": "^0.14.2",
+        "@birdycom/omniaui-blocks": "^0.14.2",
+        "@birdycom/omniaui-vue": "^0.14.2",
         "@inertiajs/vite": "^3.0.0",
         "@inertiajs/vue3": "^3.0.0",
         "@laravel/passkeys": "^0.2.0",

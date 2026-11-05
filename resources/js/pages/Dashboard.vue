@@ -32,28 +32,28 @@ const day = (n: number) =>
     new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
 const rows = [
     {
-        name: 'Ada Lovelace',
+        name: 'Customer 1',
         plan: 'Team',
         variant: 'success',
         state: 'Active',
         joined: day(0),
     },
     {
-        name: 'Alan Turing',
+        name: 'Customer 2',
         plan: 'Pro',
         variant: 'success',
         state: 'Active',
         joined: day(3),
     },
     {
-        name: 'Grace Hopper',
+        name: 'Customer 3',
         plan: 'Free',
         variant: 'warning',
         state: 'Trial',
         joined: day(6),
     },
     {
-        name: 'Linus Torvalds',
+        name: 'Customer 4',
         plan: 'Pro',
         variant: 'secondary',
         state: 'Invited',
